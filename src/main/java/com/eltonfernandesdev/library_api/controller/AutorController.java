@@ -43,4 +43,19 @@ public class AutorController {
         autorRepository.save(autor);
     }
 
+    @GetMapping
+    public List<Autor> findByFiltro(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String nacionalidade) {
+
+        if (nome != null && !nome.isEmpty()) {
+            return autorRepository.findByNome(nome);
+        }
+        if (nacionalidade != null && !nacionalidade.isEmpty()) {
+            return autorRepository.findByNacionalidade(nacionalidade);
+        }
+        return autorRepository.findAll();
+    }
+
+
 }
