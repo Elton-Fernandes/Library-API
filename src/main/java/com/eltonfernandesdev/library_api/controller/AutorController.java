@@ -32,4 +32,9 @@ public class AutorController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable("id") long idAutor) {
+        autorRepository.deleteById(idAutor);
+    }
+
 }
