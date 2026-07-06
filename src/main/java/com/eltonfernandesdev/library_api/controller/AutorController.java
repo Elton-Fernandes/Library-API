@@ -37,4 +37,10 @@ public class AutorController {
         autorRepository.deleteById(idAutor);
     }
 
+    @PutMapping("/{id}")
+    public void alterById(@PathVariable("id") long idAutor, @RequestBody Autor autor) {
+        autor.setIdAutor(idAutor);
+        autorRepository.save(autor);
+    }
+
 }
