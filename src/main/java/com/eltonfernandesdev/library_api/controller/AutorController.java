@@ -3,10 +3,10 @@ package com.eltonfernandesdev.library_api.controller;
 import com.eltonfernandesdev.library_api.model.Autor;
 import com.eltonfernandesdev.library_api.repositoy.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/library/autor")
@@ -24,4 +24,12 @@ public class AutorController {
         autorRepository.save(autor);
         return autor;
     }
+
+    @GetMapping("/{id}")
+    public Optional<Autor> findById(@PathVariable("id") long idAutor) {
+        return autorRepository.findById(idAutor);
+
+
+    }
+
 }
