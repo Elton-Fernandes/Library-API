@@ -9,7 +9,7 @@ public class Editora {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_editora")
-    private long idEditora;
+    private Long idEditora;
 
     @Column(name = "email")
     private String email;
@@ -23,11 +23,11 @@ public class Editora {
     @Column(name = "nome")
     private String nome;
 
-    public long getIdEditora() {
+    public Long getIdEditora() {
         return idEditora;
     }
 
-    public void setIdEditora(long idEditora) {
+    public void setIdEditora(Long idEditora) {
         this.idEditora = idEditora;
     }
 
