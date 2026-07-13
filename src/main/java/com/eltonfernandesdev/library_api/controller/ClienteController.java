@@ -1,6 +1,7 @@
 package com.eltonfernandesdev.library_api.controller;
 
 import com.eltonfernandesdev.library_api.repository.ClienteRepository;
+import com.eltonfernandesdev.library_api.service.ClienteService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/library/Cliente")
 public class ClienteController {
 
-    private ClienteRepository clienteRepository;
+   private ClienteService clienteService;
 
-    public ClienteController(ClienteRepository clienteRepository) {this.clienteRepository = clienteRepository;}
+   public ClienteController(ClienteService clienteService) {this.clienteService = clienteService;}
 }
