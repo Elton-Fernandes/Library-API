@@ -1,6 +1,6 @@
 package com.eltonfernandesdev.library_api.controller;
 
-import com.eltonfernandesdev.library_api.repositoy.EditoraRepository;
+import com.eltonfernandesdev.library_api.repository.EditoraRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
