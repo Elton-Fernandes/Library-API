@@ -69,6 +69,14 @@ public class Editora {
         this.nome = nome;
     }
 
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
+
     @Override
     public String toString() {
         return "Editora{" +
@@ -77,6 +85,7 @@ public class Editora {
                 ", telefone='" + telefone + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 ", nome='" + nome + '\'' +
+                ", livros=" + livros +
                 '}';
     }
 }

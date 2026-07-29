@@ -81,6 +81,7 @@ public class Autor {
                 ", nome='" + nome + '\'' +
                 ", dataNascimento=" + dataNascimento +
                 ", nacionalidade='" + nacionalidade + '\'' +
+                ", livros=" + livros +
                 '}';
     }
 }

@@ -2,6 +2,9 @@ package com.eltonfernandesdev.library_api.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Table
 @Entity
 public class Cliente {
@@ -25,6 +28,17 @@ public class Cliente {
 
     @Column(name = "is_banned")
     private boolean banned;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Emprestimo> emprestimos = new ArrayList<>();
+
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
 
     public Long getIdCliente() {
         return idCliente;
@@ -83,6 +97,7 @@ public class Cliente {
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +
                 ", banned=" + banned +
+                ", emprestimos=" + emprestimos +
                 '}';
     }
 }

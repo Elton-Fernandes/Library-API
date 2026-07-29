@@ -33,6 +33,9 @@ public class Livro {
     @JoinColumn(name = "id_editora")
     private Editora editora;
 
+    @OneToMany(mappedBy = "livro")
+    private List<Emprestimo> emprestimos = new ArrayList<>();
+
 
     public Long getIdLivro() {
         return idLivro;
@@ -74,6 +77,30 @@ public class Livro {
         this.genero = genero;
     }
 
+    public List<Autor> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(List<Autor> autores) {
+        this.autores = autores;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
+
     @Override
     public String toString() {
         return "Livro{" +
@@ -82,6 +109,9 @@ public class Livro {
                 ", isbn='" + isbn + '\'' +
                 ", numeroPaginas=" + numeroPaginas +
                 ", genero='" + genero + '\'' +
+                ", autores=" + autores +
+                ", editora=" + editora +
+                ", emprestimos=" + emprestimos +
                 '}';
     }
 }
