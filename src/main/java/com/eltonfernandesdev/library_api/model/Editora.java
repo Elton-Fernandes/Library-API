@@ -2,6 +2,9 @@ package com.eltonfernandesdev.library_api.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Table
 @Entity
 public class Editora {
@@ -22,6 +25,9 @@ public class Editora {
 
     @Column(name = "nome")
     private String nome;
+
+    @OneToMany(mappedBy = "editora")
+    private List<Livro> livros = new ArrayList<>();
 
     public Long getIdEditora() {
         return idEditora;

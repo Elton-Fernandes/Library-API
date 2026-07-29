@@ -2,6 +2,9 @@ package com.eltonfernandesdev.library_api.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Table
 @Entity
 public class Livro {
@@ -22,6 +25,14 @@ public class Livro {
 
     @Column(name = "genero")
     private String genero;
+
+    @ManyToMany(mappedBy = "livros")
+    private List<Autor> autores = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "id_editora")
+    private Editora editora;
+
 
     public Long getIdLivro() {
         return idLivro;

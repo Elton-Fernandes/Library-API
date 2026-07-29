@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table
 @Entity
@@ -22,6 +24,15 @@ public class Autor {
 
     @Column(name = "nacionalidade")
     private String nacionalidade;
+
+    @ManyToMany
+    @JoinTable(
+            name = "Escreve",
+            joinColumns = @JoinColumn(name = "id_autor"),
+            inverseJoinColumns = @JoinColumn(name = "id_livro")
+    )
+
+    private List<Livro> livros = new ArrayList<>();
 
     public Long getIdAutor() {
         return idAutor;
@@ -53,6 +64,14 @@ public class Autor {
 
     public void setNacionalidade(String nacionalidade) {
         this.nacionalidade = nacionalidade;
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
     }
 
     @Override
