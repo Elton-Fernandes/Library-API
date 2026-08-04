@@ -14,6 +14,7 @@ public class EditoraService {
     public EditoraService(EditoraRepository editoraRepository) {this.editoraRepository = editoraRepository;}
 
     public Editora save(Editora editora){
+        System.out.println("Editora salva: " + editora);
         return editoraRepository.save(editora);
     }
 
