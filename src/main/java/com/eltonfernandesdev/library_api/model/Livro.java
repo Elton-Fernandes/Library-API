@@ -31,7 +31,7 @@ public class Livro {
 
     @ManyToOne
     @JoinColumn(name = "id_editora")
-    private Editora editora;
+    private Editora idEditora;
 
     @OneToMany(mappedBy = "livro")
     private List<Emprestimo> emprestimos = new ArrayList<>();
@@ -86,11 +86,11 @@ public class Livro {
     }
 
     public Editora getEditora() {
-        return editora;
+        return idEditora;
     }
 
     public void setEditora(Editora editora) {
-        this.editora = editora;
+        this.idEditora = editora;
     }
 
     public List<Emprestimo> getEmprestimos() {
@@ -110,7 +110,7 @@ public class Livro {
                 ", numeroPaginas=" + numeroPaginas +
                 ", genero='" + genero + '\'' +
                 ", autores=" + autores +
-                ", editora=" + editora +
+                ", editora=" + idEditora +
                 ", emprestimos=" + emprestimos +
                 '}';
     }

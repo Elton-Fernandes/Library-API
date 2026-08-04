@@ -26,7 +26,7 @@ public class Editora {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(mappedBy = "editora")
+    @OneToMany(mappedBy = "idEditora")
     private List<Livro> livros = new ArrayList<>();
 
     public Long getIdEditora() {
