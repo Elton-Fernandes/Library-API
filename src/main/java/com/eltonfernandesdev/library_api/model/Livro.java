@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.library_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -26,12 +27,17 @@ public class Livro {
     @Column(name = "genero")
     private String genero;
 
-    @ManyToMany(mappedBy = "livros")
+    @ManyToMany
+    @JoinTable(
+            name = "Escreve",
+            joinColumns = @JoinColumn(name = "id_livro"),
+            inverseJoinColumns = @JoinColumn(name = "id_autor")
+    )
     private List<Autor> autores = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "id_editora")
-    private Editora idEditora;
+    private Editora editora;
 
     @OneToMany(mappedBy = "livro")
     private List<Emprestimo> emprestimos = new ArrayList<>();
@@ -86,11 +92,11 @@ public class Livro {
     }
 
     public Editora getEditora() {
-        return idEditora;
+        return editora;
     }
 
     public void setEditora(Editora editora) {
-        this.idEditora = editora;
+        this.editora = editora;
     }
 
     public List<Emprestimo> getEmprestimos() {
@@ -110,7 +116,7 @@ public class Livro {
                 ", numeroPaginas=" + numeroPaginas +
                 ", genero='" + genero + '\'' +
                 ", autores=" + autores +
-                ", editora=" + idEditora +
+                ", editora=" + editora +
                 ", emprestimos=" + emprestimos +
                 '}';
     }

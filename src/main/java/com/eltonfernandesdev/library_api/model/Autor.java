@@ -1,6 +1,7 @@
 package com.eltonfernandesdev.library_api.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -25,14 +26,10 @@ public class Autor {
     @Column(name = "nacionalidade")
     private String nacionalidade;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Escreve",
-            joinColumns = @JoinColumn(name = "id_autor"),
-            inverseJoinColumns = @JoinColumn(name = "id_livro")
-    )
-
+    @ManyToMany(mappedBy = "autores")
+    @JsonIgnore
     private List<Livro> livros = new ArrayList<>();
+
 
     public Long getIdAutor() {
         return idAutor;

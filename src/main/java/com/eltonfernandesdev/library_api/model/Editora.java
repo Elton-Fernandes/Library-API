@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.library_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ public class Editora {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(mappedBy = "idEditora")
+    @OneToMany(mappedBy = "editora")
+    @JsonIgnore
     private List<Livro> livros = new ArrayList<>();
 
     public Long getIdEditora() {
