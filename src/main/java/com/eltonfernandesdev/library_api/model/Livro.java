@@ -40,6 +40,7 @@ public class Livro {
     private Editora editora;
 
     @OneToMany(mappedBy = "livro")
+    @JsonIgnore
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
 

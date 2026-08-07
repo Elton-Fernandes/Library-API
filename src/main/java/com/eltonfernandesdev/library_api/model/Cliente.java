@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.library_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class Cliente {
     private boolean banned;
 
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
     public List<Emprestimo> getEmprestimos() {
