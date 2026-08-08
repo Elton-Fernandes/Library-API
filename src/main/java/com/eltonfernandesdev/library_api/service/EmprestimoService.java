@@ -4,6 +4,7 @@ import com.eltonfernandesdev.library_api.model.Emprestimo;
 import com.eltonfernandesdev.library_api.repository.EmprestimoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -14,6 +15,8 @@ public class EmprestimoService {
     public EmprestimoService(EmprestimoRepository emprestimoRepository) {this.emprestimoRepository = emprestimoRepository;}
 
     public Emprestimo save(Emprestimo emprestimo) {
+        emprestimo.setDataInicio(LocalDate.now());
+        emprestimo.setDataFim(emprestimo.getDataInicio().plusMonths(1));
         return emprestimoRepository.save(emprestimo);
     }
 
