@@ -1,12 +1,14 @@
 package com.eltonfernandesdev.library_api.service;
 
 import com.eltonfernandesdev.library_api.model.Emprestimo;
+import com.eltonfernandesdev.library_api.model.Livro;
 import com.eltonfernandesdev.library_api.repository.ClienteRepository;
 import com.eltonfernandesdev.library_api.repository.EmprestimoRepository;
 import com.eltonfernandesdev.library_api.repository.LivroRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,7 +38,17 @@ public class EmprestimoService {
         if (!clienteRepository.existsById(idCliente)) {
             throw new IllegalArgumentException("Cliente não encontrado");
         }
-        
+
+        List<Emprestimo> lista = emprestimoRepository.findByIdLivro(emprestimo.getLivro().getIdLivro());
+
+
+            boolean livroIndisponivel = lista.stream().anyMatch(emprestimoExistente -> !emprestimoExistente.isDevolvido());
+
+            if (livroIndisponivel) {
+                throw new IllegalArgumentException("Livro indisponível! Espere ele ser devolvido.");
+            }
+
+
 
         emprestimo.setDataInicio(LocalDate.now());
         emprestimo.setDataFim(emprestimo.getDataInicio().plusMonths(1));

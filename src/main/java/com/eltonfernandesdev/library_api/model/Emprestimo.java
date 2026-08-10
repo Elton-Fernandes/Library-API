@@ -28,7 +28,7 @@ public class Emprestimo {
     @Column(name = "data_fim", nullable = false)
     private LocalDate dataFim;
 
-    @Column(name = "is_devolvido")
+    @Column(name = "is_devolvido", nullable = false)
     private boolean devolvido;
 
     @Column(name = "valor", nullable = false)
