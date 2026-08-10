@@ -17,7 +17,7 @@ public class Autor {
     @Column(name="id_autor")
     private Long idAutor;
 
-    @Column(name = "nome")
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
     @Column(name = "data_nascimento")

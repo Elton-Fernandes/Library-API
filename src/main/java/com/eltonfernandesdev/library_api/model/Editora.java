@@ -15,16 +15,16 @@ public class Editora {
     @Column(name = "id_editora")
     private Long idEditora;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 50, nullable = false)
     private String email;
 
-    @Column(name = "telefone")
+    @Column(name = "telefone", length = 13, nullable = false)
     private String telefone;
 
-    @Column(name = "cnpj")
+    @Column(name = "cnpj", length = 14, nullable = false, unique = true)
     private String cnpj;
 
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
     @OneToMany(mappedBy = "editora")

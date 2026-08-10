@@ -15,19 +15,19 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @Column(name = "nome")
+    @Column(name = "nome", length = 100, nullable = false)
     private String nome;
 
-    @Column(name = "cpf")
+    @Column(name = "cpf", length = 11, unique = true, nullable = false)
     private String cpf;
 
-    @Column(name = "telefone")
+    @Column(name = "telefone", length = 13, nullable = false)
     private String telefone;
 
-    @Column(name = "email")
+    @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "is_banned")
+    @Column(name = "is_banned", nullable = false)
     private boolean banned;
 
     @OneToMany(mappedBy = "cliente")

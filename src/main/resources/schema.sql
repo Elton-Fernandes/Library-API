@@ -13,7 +13,7 @@ CREATE TABLE Livro
     isbn VARCHAR(13) UNIQUE NOT NULL,
     numero_paginas INT NOT NULL,
     genero VARCHAR(255) NOT NULL,
-    id_editora INT
+    id_editora INT NOT NULL
 );
 
 CREATE TABLE Editora
@@ -38,8 +38,8 @@ CREATE TABLE Cliente
 CREATE TABLE Emprestimo
 (
     id_emprestimo SERIAL PRIMARY KEY,
-    id_cliente INT,
-    id_livro INT,
+    id_cliente INT NOT NULL,
+    id_livro INT NOT NULL ,
     data_inicio DATE NOT NULL,
     data_fim DATE NOT NULL,
     is_devolvido BOOLEAN,

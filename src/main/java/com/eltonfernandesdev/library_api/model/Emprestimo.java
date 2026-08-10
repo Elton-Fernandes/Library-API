@@ -15,26 +15,26 @@ public class Emprestimo {
     private Long idEmprestimo;
 
     @ManyToOne
-    @JoinColumn(name = "id_livro")
+    @JoinColumn(name = "id_livro", nullable = false)
     private Livro livro;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
 
-    @Column(name = "data_inicio")
+    @Column(name = "data_inicio", nullable = false)
     private LocalDate dataInicio;
 
-    @Column(name = "data_fim")
+    @Column(name = "data_fim", nullable = false)
     private LocalDate dataFim;
 
     @Column(name = "is_devolvido")
     private boolean devolvido;
 
-    @Column(name = "valor")
+    @Column(name = "valor", nullable = false)
     private BigDecimal valor;
 
-    @Column(name = "is_pago")
+    @Column(name = "is_pago", nullable = false)
     private boolean pago;
 
     public Long getIdEmprestimo() {

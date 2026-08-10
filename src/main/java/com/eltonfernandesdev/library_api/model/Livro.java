@@ -15,16 +15,16 @@ public class Livro {
     @Column(name = "id_livro")
     private Long idLivro;
 
-    @Column(name = "titulo")
+    @Column(name = "titulo", nullable = false)
     private String titulo;
 
-    @Column(name = "isbn")
+    @Column(name = "isbn", length = 13,unique = true, nullable = false)
     private String isbn;
 
-    @Column(name = "numero_paginas")
+    @Column(name = "numero_paginas", nullable = false)
     private int numeroPaginas;
 
-    @Column(name = "genero")
+    @Column(name = "genero", nullable = false)
     private String genero;
 
     @ManyToMany
@@ -36,7 +36,7 @@ public class Livro {
     private List<Autor> autores = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "id_editora")
+    @JoinColumn(name = "id_editora", nullable = false)
     private Editora editora;
 
     @OneToMany(mappedBy = "livro")
