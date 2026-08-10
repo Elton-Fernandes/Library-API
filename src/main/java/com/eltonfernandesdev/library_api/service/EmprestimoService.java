@@ -1,7 +1,9 @@
 package com.eltonfernandesdev.library_api.service;
 
 import com.eltonfernandesdev.library_api.model.Emprestimo;
+import com.eltonfernandesdev.library_api.repository.ClienteRepository;
 import com.eltonfernandesdev.library_api.repository.EmprestimoRepository;
+import com.eltonfernandesdev.library_api.repository.LivroRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -11,10 +13,31 @@ import java.util.Optional;
 public class EmprestimoService {
 
     private EmprestimoRepository emprestimoRepository;
+    private LivroRepository livroRepository;
+    private ClienteRepository clienteRepository;
 
-    public EmprestimoService(EmprestimoRepository emprestimoRepository) {this.emprestimoRepository = emprestimoRepository;}
+    public EmprestimoService(EmprestimoRepository emprestimoRepository,
+                             LivroRepository livroRepository,
+                             ClienteRepository clienteRepository
+    ) {this.emprestimoRepository = emprestimoRepository;
+        this.livroRepository = livroRepository;
+        this.clienteRepository = clienteRepository;
+    }
 
     public Emprestimo save(Emprestimo emprestimo) {
+
+        Long idLivro = emprestimo.getLivro().getIdLivro();
+        Long idCliente = emprestimo.getCliente().getIdCliente();
+
+        if (!livroRepository.existsById(idLivro)) {
+            throw new IllegalArgumentException("Livro não encontrado");
+        }
+
+        if (!clienteRepository.existsById(idCliente)) {
+            throw new IllegalArgumentException("Cliente não encontrado");
+        }
+        
+
         emprestimo.setDataInicio(LocalDate.now());
         emprestimo.setDataFim(emprestimo.getDataInicio().plusMonths(1));
         return emprestimoRepository.save(emprestimo);
