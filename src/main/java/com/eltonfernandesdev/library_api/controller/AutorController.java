@@ -1,8 +1,11 @@
 package com.eltonfernandesdev.library_api.controller;
 
+import com.eltonfernandesdev.library_api.dto.AutorRequestDTO;
+import com.eltonfernandesdev.library_api.dto.AutorResponseDTO;
 import com.eltonfernandesdev.library_api.model.Autor;
 import com.eltonfernandesdev.library_api.repository.AutorRepository;
 import com.eltonfernandesdev.library_api.service.AutorService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,34 +20,39 @@ public class AutorController {
     public AutorController(AutorService autorService) {this.autorService = autorService;}
 
     @PostMapping
-    public Autor salvar(@RequestBody Autor autor) {
-        return autorService.salvar(autor);
+    public AutorResponseDTO salvar(@RequestBody AutorRequestDTO dto) {
+        return autorService.salvar(dto);
     }
 
 
     @GetMapping("/{id}")
-    public Optional<Autor> findById(@PathVariable("id") Long idAutor) {
-        return autorService.findById(idAutor);
+    public ResponseEntity<AutorResponseDTO> findById(@PathVariable("id") Long idAutor) {
+        return autorService.findById(idAutor)
+                .map(ResponseEntity::ok).
+                orElse(ResponseEntity.notFound().build());
 
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id") Long idAutor) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long idAutor) {
         autorService.deleteById(idAutor);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public void alterById(@PathVariable("id") Long idAutor, @RequestBody Autor autor) {
-        autorService.alterById(idAutor, autor);
+    public ResponseEntity<AutorResponseDTO> alterById(@PathVariable("id") Long idAutor, @RequestBody AutorRequestDTO dto) {
+        return ResponseEntity.ok(autorService.alterById(idAutor, dto));
+
     }
 
 
     @GetMapping
-    public List<Autor> findByFiltro(
+    public ResponseEntity<List<AutorResponseDTO>> findByFiltro(
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String nacionalidade) {
 
-        return autorService.findByFiltro(nome, nacionalidade);
+            return ResponseEntity.ok(autorService.findByFiltro(nome, nacionalidade));
     }
 
 
