@@ -1,7 +1,10 @@
 package com.eltonfernandesdev.library_api.controller;
 
+import com.eltonfernandesdev.library_api.dto.EditoraRequestDTO;
+import com.eltonfernandesdev.library_api.dto.EditoraResponseDTO;
 import com.eltonfernandesdev.library_api.model.Editora;
 import com.eltonfernandesdev.library_api.service.EditoraService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -15,22 +18,27 @@ public class EditoraController {
     public EditoraController(EditoraService editoraService) {this.editoraService = editoraService;}
 
     @PostMapping
-    public Editora save(@RequestBody Editora editora) {
-        return editoraService.save(editora);
+    public EditoraResponseDTO save(@RequestBody EditoraRequestDTO dto) {
+        return editoraService.save(dto);
     }
 
     @GetMapping("/{id}")
-    public Optional<Editora> findById(@PathVariable("id") Long idEditora) {
-        return editoraService.findById(idEditora);
+    public ResponseEntity<EditoraResponseDTO> findById(@PathVariable("id") Long idEditora) {
+        return editoraService.findById(idEditora)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable("id") Long idEditora) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long idEditora) {
+
         editoraService.deleteById(idEditora);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public void alterById(@PathVariable("id") Long idEditora, @RequestBody Editora editora) {
-        editoraService.alterById(idEditora, editora);
+    public ResponseEntity<EditoraResponseDTO> alterById(@PathVariable("id") Long idEditora, @RequestBody EditoraRequestDTO dto) {
+        return ResponseEntity.ok(editoraService.alterById(idEditora, dto));
     }
 }
