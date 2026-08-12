@@ -39,7 +39,7 @@ public class EmprestimoService {
             throw new IllegalArgumentException("Cliente não encontrado");
         }
 
-        List<Emprestimo> lista = emprestimoRepository.findByIdLivro(emprestimo.getLivro().getIdLivro());
+        List<Emprestimo> lista = emprestimoRepository.findByLivroIdLivro(emprestimo.getLivro().getIdLivro());
 
 
             boolean livroIndisponivel = lista.stream().anyMatch(emprestimoExistente -> !emprestimoExistente.isDevolvido());
