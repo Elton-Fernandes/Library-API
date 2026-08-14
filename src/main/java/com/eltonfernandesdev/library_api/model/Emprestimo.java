@@ -105,8 +105,8 @@ public class Emprestimo {
     public String toString() {
         return "Emprestimo{" +
                 "idEmprestimo=" + idEmprestimo +
-                ", livro=" + livro +
-                ", cliente=" + cliente +
+                ", livro=" + (livro != null ? livro.getTitulo() : null) +
+                ", cliente=" + (cliente != null ? cliente.getNome() : null) +
                 ", dataInicio=" + dataInicio +
                 ", dataFim=" + dataFim +
                 ", devolvido=" + devolvido +

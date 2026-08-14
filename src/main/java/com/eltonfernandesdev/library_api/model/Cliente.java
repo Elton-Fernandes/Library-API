@@ -31,7 +31,6 @@ public class Cliente {
     private boolean banned;
 
     @OneToMany(mappedBy = "cliente")
-    @JsonIgnore
     private List<Emprestimo> emprestimos = new ArrayList<>();
 
     public List<Emprestimo> getEmprestimos() {
@@ -99,7 +98,7 @@ public class Cliente {
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +
                 ", banned=" + banned +
-                ", emprestimos=" + emprestimos +
+                ", emprestimos=" + emprestimos.size() + "empréstimo(s)" +
                 '}';
     }
 }
