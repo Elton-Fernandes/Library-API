@@ -36,10 +36,6 @@ Decisões técnicas relevantes:
 - Relacionamentos `@OneToMany` e `@ManyToMany` mapeados entre as entidades
 - Classe de configuração dedicada para o banco de dados
 
-## ⚠️ Limitações conhecidas / débito técnico
-
-- Uso de `@JsonIgnore` como solução temporária para evitar recursão infinita na serialização JSON causada pelos relacionamentos bidirecionais. Solução planejada: migrar para DTOs específicos de resposta, evitando expor as entidades diretamente e dando mais controle sobre o que é serializado.
-
 ## 🚀 Como executar
 
 ### Pré-requisitos
@@ -111,8 +107,8 @@ A porta e o endereço de acesso da API dependem da configuração do projeto (`a
 
 ## 🧭 Roadmap
 
-- [ ] Criação de DTOs de requisição e resposta
-- [ ] Lógica de disponibilidade de livros (derivada da entidade Empréstimo)
+- [✔️] Criação de DTOs de requisição e resposta
+- [✔️] Lógica de disponibilidade de livros (derivada da entidade Empréstimo)
 - [ ] Tratamento global de erros com `@ControllerAdvice`
 - [ ] Bean Validation nos DTOs
 - [ ] Testes unitários e de integração (JUnit/Mockito)
