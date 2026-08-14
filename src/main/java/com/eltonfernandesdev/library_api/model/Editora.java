@@ -28,7 +28,6 @@ public class Editora {
     private String nome;
 
     @OneToMany(mappedBy = "editora")
-    @JsonIgnore
     private List<Livro> livros = new ArrayList<>();
 
     public Long getIdEditora() {
@@ -87,7 +86,7 @@ public class Editora {
                 ", telefone='" + telefone + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 ", nome='" + nome + '\'' +
-                ", livros=" + livros +
+                ", livros=" + livros.size() + "livro(s)" +
                 '}';
     }
 }

@@ -27,7 +27,6 @@ public class Autor {
     private String nacionalidade;
 
     @ManyToMany(mappedBy = "autores")
-    @JsonIgnore
     private List<Livro> livros = new ArrayList<>();
 
 
@@ -78,7 +77,7 @@ public class Autor {
                 ", nome='" + nome + '\'' +
                 ", dataNascimento=" + dataNascimento +
                 ", nacionalidade='" + nacionalidade + '\'' +
-                ", livros=" + livros +
+                ", livros=" + livros.size() + "livros(s)" +
                 '}';
     }
 }

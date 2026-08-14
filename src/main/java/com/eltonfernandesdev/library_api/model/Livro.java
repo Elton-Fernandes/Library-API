@@ -116,9 +116,9 @@ public class Livro {
                 ", isbn='" + isbn + '\'' +
                 ", numeroPaginas=" + numeroPaginas +
                 ", genero='" + genero + '\'' +
-                ", autores=" + autores +
-                ", editora=" + editora +
-                ", emprestimos=" + emprestimos +
+                ", autores=" + autores.size() + "autor(es)" +
+                ", editora=" + (editora != null ? editora.getNome() : null) +
+                ", emprestimos=" + emprestimos.size() + "empréstimo(s)" +
                 '}';
     }
 }
