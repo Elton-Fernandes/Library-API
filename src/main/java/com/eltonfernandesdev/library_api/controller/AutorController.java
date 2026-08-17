@@ -5,6 +5,7 @@ import com.eltonfernandesdev.library_api.dto.AutorResponseDTO;
 import com.eltonfernandesdev.library_api.model.Autor;
 import com.eltonfernandesdev.library_api.repository.AutorRepository;
 import com.eltonfernandesdev.library_api.service.AutorService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class AutorController {
     public AutorController(AutorService autorService) {this.autorService = autorService;}
 
     @PostMapping
-    public AutorResponseDTO salvar(@RequestBody AutorRequestDTO dto) {
+    public AutorResponseDTO salvar(@Valid @RequestBody AutorRequestDTO dto) {
         return autorService.salvar(dto);
     }
 
@@ -41,7 +42,7 @@ public class AutorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AutorResponseDTO> alterById(@PathVariable("id") Long idAutor, @RequestBody AutorRequestDTO dto) {
+    public ResponseEntity<AutorResponseDTO> alterById(@PathVariable("id") Long idAutor, @Valid @RequestBody AutorRequestDTO dto) {
         return ResponseEntity.ok(autorService.alterById(idAutor, dto));
 
     }

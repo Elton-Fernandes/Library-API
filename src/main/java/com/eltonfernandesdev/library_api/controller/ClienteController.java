@@ -2,12 +2,11 @@ package com.eltonfernandesdev.library_api.controller;
 
 import com.eltonfernandesdev.library_api.dto.ClienteRequestDTO;
 import com.eltonfernandesdev.library_api.dto.ClienteResponseDTO;
-import com.eltonfernandesdev.library_api.model.Cliente;
 import com.eltonfernandesdev.library_api.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/library/cliente")
@@ -18,7 +17,7 @@ public class ClienteController {
    public ClienteController(ClienteService clienteService) {this.clienteService = clienteService;}
 
    @PostMapping
-   public ClienteResponseDTO save(@RequestBody ClienteRequestDTO dto) {
+   public ClienteResponseDTO save(@Valid @RequestBody ClienteRequestDTO dto) {
       return clienteService.save(dto);
    }
 
@@ -37,7 +36,7 @@ public class ClienteController {
    }
 
    @PutMapping("/{id}")
-   public ResponseEntity<ClienteResponseDTO> alterById(@PathVariable("id") Long idCliente, @RequestBody ClienteRequestDTO dto){
+   public ResponseEntity<ClienteResponseDTO> alterById(@PathVariable("id") Long idCliente, @Valid @RequestBody ClienteRequestDTO dto){
 
       return ResponseEntity.ok(clienteService.alterById(idCliente, dto));
    }

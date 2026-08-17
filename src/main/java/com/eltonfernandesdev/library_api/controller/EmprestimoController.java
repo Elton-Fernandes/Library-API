@@ -4,6 +4,7 @@ import com.eltonfernandesdev.library_api.dto.EmprestimoRequestDTO;
 import com.eltonfernandesdev.library_api.dto.EmprestimoResponseDTO;
 import com.eltonfernandesdev.library_api.model.Emprestimo;
 import com.eltonfernandesdev.library_api.service.EmprestimoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class EmprestimoController {
     public EmprestimoController(EmprestimoService emprestimoService) {this.emprestimoService = emprestimoService;}
 
     @PostMapping
-    public EmprestimoResponseDTO save(@RequestBody EmprestimoRequestDTO dto) {
+    public EmprestimoResponseDTO save(@Valid @RequestBody EmprestimoRequestDTO dto) {
         return emprestimoService.save(dto);
     }
 
@@ -37,7 +38,7 @@ public class EmprestimoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmprestimoResponseDTO> alterById(@PathVariable("id") Long idEmprestimo, @RequestBody EmprestimoRequestDTO dto) {
+    public ResponseEntity<EmprestimoResponseDTO> alterById(@PathVariable("id") Long idEmprestimo, @Valid @RequestBody EmprestimoRequestDTO dto) {
         return ResponseEntity.ok(emprestimoService.alterById(idEmprestimo, dto));
     }
 }

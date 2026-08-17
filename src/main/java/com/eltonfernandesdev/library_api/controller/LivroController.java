@@ -2,12 +2,12 @@ package com.eltonfernandesdev.library_api.controller;
 
 import com.eltonfernandesdev.library_api.dto.LivroRequestDTO;
 import com.eltonfernandesdev.library_api.dto.LivroResponseDTO;
-import com.eltonfernandesdev.library_api.model.Livro;
 import com.eltonfernandesdev.library_api.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/library/livro")
@@ -18,7 +18,7 @@ public class LivroController {
     public LivroController(LivroService livroService) {this.livroService = livroService;}
 
     @PostMapping
-    public LivroResponseDTO salvar(@RequestBody LivroRequestDTO dto){
+    public LivroResponseDTO salvar(@Valid @RequestBody LivroRequestDTO dto){
         return livroService.salvar(dto);
     }
 
@@ -37,7 +37,7 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LivroResponseDTO> alterById(@PathVariable("id") Long idLivro, @RequestBody LivroRequestDTO dto) {
+    public ResponseEntity<LivroResponseDTO> alterById(@PathVariable("id") Long idLivro, @Valid @RequestBody LivroRequestDTO dto) {
 
         return ResponseEntity.ok(livroService.alterById(dto, idLivro));
     }

@@ -1,5 +1,8 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -7,8 +10,12 @@ import java.time.LocalDate;
 @Component
 public class AutorRequestDTO {
 
+    @NotBlank(message = "O nome é obrigatório")
+    @Size(min = 3, max = 100)
     private String nome;
+    @NotBlank(message = "A nacionalidade é obrigatória")
     private String nacionalidade;
+
     private LocalDate dataNascimento;
 
     public String getNome() {

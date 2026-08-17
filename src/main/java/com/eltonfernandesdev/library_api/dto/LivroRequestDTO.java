@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import jakarta.validation.constraints.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -7,12 +8,21 @@ import java.util.List;
 @Component
 public class LivroRequestDTO {
 
+    @NotBlank(message = "O título é obrigatório")
+    @Size(min = 2)
     private String titulo;
+    @NotBlank(message = "O ISBN é obrigatório")
     private String isbn;
+    @NotNull
+    @Positive
     private int numeroPaginas;
+    @NotBlank(message = "O gênero do livro é obrigatório")
     private String genero;
+    @NotNull(message = "O id da editora é obrigatório")
+    @Positive
     private Long idEditora;
-    private List<Long> autores;
+    @NotEmpty(message = "O livro deve possuir pelo menos um autor")
+    private List<@Positive(message = "O id do autor precisa ser positivo") Long> autores;
 
     public String getTitulo() {
         return titulo;

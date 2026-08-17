@@ -1,5 +1,7 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -7,10 +9,18 @@ import java.math.BigDecimal;
 @Component
 public class EmprestimoRequestDTO {
 
+    @NotNull(message = "O valor é obrigatório")
+    @Positive
     private BigDecimal valor;
+    @NotNull(message = "Informação obrigatória")
     private boolean devolvido;
+    @NotNull(message = "Informação sobre pagamento é obrigatória")
     private boolean pago;
+    @NotNull(message = "O id do livro é obrigatório")
+    @Positive
     private Long idLivro;
+    @NotNull(message = "O id do cliente é obrigatório")
+    @Positive
     private Long idCliente;
 
     public BigDecimal getValor() {
