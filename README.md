@@ -97,7 +97,6 @@ A porta e o endereço de acesso da API dependem da configuração do projeto (`a
 
 | Método | Rota            | Descrição            |
 |--------|-----------------|------------------------|
-| GET    | /autores        | Lista todos os autores |
 | GET    | /autores/{id}   | Busca autor por ID     |
 | POST   | /autores        | Cadastra novo autor    |
 | PUT    | /autores/{id}   | Atualiza autor         |
@@ -110,7 +109,7 @@ A porta e o endereço de acesso da API dependem da configuração do projeto (`a
 - [✔️] Criação de DTOs de requisição e resposta
 - [✔️] Lógica de disponibilidade de livros (derivada da entidade Empréstimo)
 - [ ] Tratamento global de erros com `@ControllerAdvice`
-- [ ] Bean Validation nos DTOs
+- [✔️] Bean Validation nos DTOs
 - [ ] Testes unitários e de integração (JUnit/Mockito)
 - [ ] Documentação da API com Swagger/OpenAPI
 - [ ] Segurança básica com Spring Security
