@@ -2,6 +2,7 @@ package com.eltonfernandesdev.library_api.service;
 
 import com.eltonfernandesdev.library_api.dto.ClienteRequestDTO;
 import com.eltonfernandesdev.library_api.dto.ClienteResponseDTO;
+import com.eltonfernandesdev.library_api.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.library_api.mapper.ClienteMapper;
 import com.eltonfernandesdev.library_api.model.Cliente;
 import com.eltonfernandesdev.library_api.repository.ClienteRepository;
@@ -39,7 +40,7 @@ public class ClienteService {
 
     public ClienteResponseDTO alterById(Long idCliente, ClienteRequestDTO dto) {
         Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(()-> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(()-> new ResourceNotFoundException("Cliente não encontrado"));
 
         cliente.setNome(dto.getNome());
         cliente.setCpf(dto.getCpf());

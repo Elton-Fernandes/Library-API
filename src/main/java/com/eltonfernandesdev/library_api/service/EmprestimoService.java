@@ -2,6 +2,8 @@ package com.eltonfernandesdev.library_api.service;
 
 import com.eltonfernandesdev.library_api.dto.EmprestimoRequestDTO;
 import com.eltonfernandesdev.library_api.dto.EmprestimoResponseDTO;
+import com.eltonfernandesdev.library_api.exception.BusinessException;
+import com.eltonfernandesdev.library_api.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.library_api.mapper.EmprestimoMapper;
 import com.eltonfernandesdev.library_api.model.Cliente;
 import com.eltonfernandesdev.library_api.model.Emprestimo;
@@ -38,10 +40,10 @@ public class EmprestimoService {
         Emprestimo emprestimo = emprestimoMapper.toEntity(dto);
 
         Livro livro = livroRepository.findById(dto.getIdLivro())
-                .orElseThrow(()-> new RuntimeException("Livro não encontrado!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Livro não encontrado!"));
 
         Cliente cliente = clienteRepository.findById(dto.getIdCliente())
-                .orElseThrow(()-> new RuntimeException("Cliente não encontrado!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Cliente não encontrado!"));
 
         emprestimo.setCliente(cliente);
         emprestimo.setLivro(livro);
@@ -50,7 +52,7 @@ public class EmprestimoService {
             boolean livroIndisponivel = lista.stream().anyMatch(emprestimoExistente -> !emprestimoExistente.isDevolvido());
 
             if (livroIndisponivel) {
-                throw new IllegalArgumentException("Livro indisponível! Espere ele ser devolvido.");
+                throw new BusinessException("Livro indisponível! Espere ele ser devolvido.");
             }
 
         emprestimo.setDataInicio(LocalDate.now());
@@ -70,19 +72,19 @@ public class EmprestimoService {
 
     public EmprestimoResponseDTO alterById(Long idEmprestimo, EmprestimoRequestDTO dto) {
         Emprestimo emprestimo = emprestimoRepository.findById(idEmprestimo)
-                .orElseThrow(()-> new RuntimeException("Empréstimo não encontrado!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Empréstimo não encontrado!"));
 
         emprestimo.setValor(dto.getValor());
         emprestimo.setPago(dto.isPago());
         emprestimo.setDevolvido(dto.isDevolvido());
 
         Livro livro = livroRepository.findById(dto.getIdLivro())
-                .orElseThrow(()-> new RuntimeException("Livro não encontrado!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Livro não encontrado!"));
 
         emprestimo.setLivro(livro);
 
         Cliente cliente = clienteRepository.findById(dto.getIdCliente())
-                .orElseThrow(()-> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(()-> new ResourceNotFoundException("Cliente não encontrado"));
 
         emprestimo.setCliente(cliente);
 

@@ -2,6 +2,7 @@ package com.eltonfernandesdev.library_api.service;
 
 import com.eltonfernandesdev.library_api.dto.LivroRequestDTO;
 import com.eltonfernandesdev.library_api.dto.LivroResponseDTO;
+import com.eltonfernandesdev.library_api.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.library_api.mapper.LivroMapper;
 import com.eltonfernandesdev.library_api.model.Autor;
 import com.eltonfernandesdev.library_api.model.Editora;
@@ -37,7 +38,7 @@ public class LivroService {
         Livro livro = livroMapper.toEntity(dto);
 
         Editora editora = editoraRepository.findById(dto.getIdEditora())
-                .orElseThrow(()-> new RuntimeException("Editora não encontrada"));
+                .orElseThrow(()-> new ResourceNotFoundException("Editora não encontrada"));
 
         livro.setEditora(editora);
 
@@ -45,7 +46,7 @@ public class LivroService {
                 .stream()
                 .map(id -> autorRepository.findById(id)
                         .orElseThrow(() ->
-                                new RuntimeException("Autor não encontrado: " + id)))
+                                new ResourceNotFoundException("Autor não encontrado: " + id)))
                 .toList();
 
         livro.setAutores(autores);
@@ -65,7 +66,7 @@ public class LivroService {
 
     public LivroResponseDTO alterById(LivroRequestDTO dto, Long idLivro) {
         Livro livro = livroRepository.findById(idLivro)
-                .orElseThrow(() -> new RuntimeException("Livro não foi encontrado!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Livro não foi encontrado!"));
 
         livro.setTitulo(dto.getTitulo());
         livro.setGenero(dto.getGenero());
@@ -73,7 +74,7 @@ public class LivroService {
         livro.setNumeroPaginas(dto.getNumeroPaginas());
 
         Editora editora = editoraRepository.findById(dto.getIdEditora())
-                .orElseThrow(()-> new RuntimeException("Editora não encontrada"));
+                .orElseThrow(()-> new ResourceNotFoundException("Editora não encontrada"));
 
         livro.setEditora(editora);
 
@@ -81,7 +82,7 @@ public class LivroService {
                 .stream()
                 .map(id -> autorRepository.findById(id)
                         .orElseThrow(() ->
-                                new RuntimeException("Autor não encontrado: " + id)))
+                                new ResourceNotFoundException("Autor não encontrado: " + id)))
                 .toList();
 
         livro.setAutores(autores);

@@ -2,6 +2,7 @@ package com.eltonfernandesdev.library_api.service;
 
 import com.eltonfernandesdev.library_api.dto.AutorRequestDTO;
 import com.eltonfernandesdev.library_api.dto.AutorResponseDTO;
+import com.eltonfernandesdev.library_api.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.library_api.mapper.AutorMapper;
 import com.eltonfernandesdev.library_api.model.Autor;
 import com.eltonfernandesdev.library_api.repository.AutorRepository;
@@ -37,7 +38,7 @@ public class AutorService {
 
     public AutorResponseDTO alterById(Long idAutor, AutorRequestDTO dto) {
         Autor autor = autorRepository.findById(idAutor)
-                .orElseThrow(()-> new RuntimeException("Autor não encontrado!"));
+                .orElseThrow(()-> new ResourceNotFoundException("Autor não encontrado!"));
 
         autor.setNome(dto.getNome());
         autor.setNacionalidade(dto.getNacionalidade());

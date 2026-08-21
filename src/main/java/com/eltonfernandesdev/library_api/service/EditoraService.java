@@ -2,6 +2,7 @@ package com.eltonfernandesdev.library_api.service;
 
 import com.eltonfernandesdev.library_api.dto.EditoraRequestDTO;
 import com.eltonfernandesdev.library_api.dto.EditoraResponseDTO;
+import com.eltonfernandesdev.library_api.exception.ResourceNotFoundException;
 import com.eltonfernandesdev.library_api.mapper.EditoraMapper;
 import com.eltonfernandesdev.library_api.model.Editora;
 import com.eltonfernandesdev.library_api.repository.EditoraRepository;
@@ -38,7 +39,7 @@ public class EditoraService {
     public EditoraResponseDTO alterById(Long idEditora, EditoraRequestDTO dto) {
 
         Editora editora = editoraRepository.findById(idEditora)
-                .orElseThrow(()-> new RuntimeException("Editora não encontrada"));
+                .orElseThrow(()-> new ResourceNotFoundException("Editora não encontrada"));
 
         editora.setNome(dto.getNome());
         editora.setTelefone(dto.getTelefone());
