@@ -108,7 +108,7 @@ A porta e o endereço de acesso da API dependem da configuração do projeto (`a
 
 - [✔️] Criação de DTOs de requisição e resposta
 - [✔️] Lógica de disponibilidade de livros (derivada da entidade Empréstimo)
-- [ ] Tratamento global de erros com `@ControllerAdvice`
+- [✔️] Tratamento global de erros com `@ControllerAdvice`
 - [✔️] Bean Validation nos DTOs
 - [ ] Testes unitários e de integração (JUnit/Mockito)
 - [ ] Documentação da API com Swagger/OpenAPI
