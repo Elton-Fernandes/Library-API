@@ -3,6 +3,7 @@ package com.eltonfernandesdev.library_api.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,6 +16,7 @@ public class EditoraRequestDTO {
     @Size(min = 9, max = 11)
     private String telefone;
     @NotBlank(message = "O CNPJ é obrigatório")
+    @CNPJ
     private String cnpj;
     @NotBlank(message = "O nome da empresa é obrigatório")
     @Size(min = 1)
