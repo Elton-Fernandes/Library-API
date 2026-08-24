@@ -1,6 +1,7 @@
 package com.eltonfernandesdev.library_api.dto;
 
 import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.ISBN;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class LivroRequestDTO {
     @Size(min = 2)
     private String titulo;
     @NotBlank(message = "O ISBN é obrigatório")
+    @ISBN
     private String isbn;
     @NotNull
     @Positive

@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,6 +14,7 @@ public class ClienteRequestDTO {
     @Size(min = 3, max = 100)
     private String nome;
     @NotBlank(message = "O cpf é obrigatório")
+    @CPF
     private String cpf;
     @NotBlank(message = "O email é obrigatório")
     @Email
