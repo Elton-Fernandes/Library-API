@@ -1,8 +1,10 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 @Component
+@Schema(name = "Cliente Response")
 public class ClienteResponseDTO {
 
     private Long idCliente;

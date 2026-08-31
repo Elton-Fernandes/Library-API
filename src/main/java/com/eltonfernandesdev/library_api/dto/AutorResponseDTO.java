@@ -1,10 +1,12 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
+@Schema(name = "Autor Response")
 public class AutorResponseDTO {
 
     private Long idAutor;

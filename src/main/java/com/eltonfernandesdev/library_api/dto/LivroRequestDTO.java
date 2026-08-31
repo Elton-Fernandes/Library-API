@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.ISBN;
 import org.springframework.stereotype.Component;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
+@Schema(name = "Livro Request")
 public class LivroRequestDTO {
 
     @NotBlank(message = "O título é obrigatório")

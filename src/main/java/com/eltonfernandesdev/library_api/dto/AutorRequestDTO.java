@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
+@Schema(name = "Autor Request")
 public class AutorRequestDTO {
 
     @NotBlank(message = "O nome é obrigatório")

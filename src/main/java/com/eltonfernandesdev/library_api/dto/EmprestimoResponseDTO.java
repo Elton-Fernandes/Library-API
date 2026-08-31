@@ -1,11 +1,13 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Component
+@Schema(name = "Empréstimo Response")
 public class EmprestimoResponseDTO {
 
     private Long idEmprestimo;

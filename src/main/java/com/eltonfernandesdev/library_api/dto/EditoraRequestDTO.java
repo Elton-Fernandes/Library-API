@@ -1,5 +1,6 @@
 package com.eltonfernandesdev.library_api.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -7,6 +8,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import org.springframework.stereotype.Component;
 
 @Component
+@Schema(name = "Editora Request")
 public class EditoraRequestDTO {
 
     @NotBlank(message = "O email é obrigatório")
