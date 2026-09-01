@@ -111,7 +111,7 @@ A porta e o endereço de acesso da API dependem da configuração do projeto (`a
 - [✔️] Tratamento global de erros com `@ControllerAdvice`
 - [✔️] Bean Validation nos DTOs
 - [ ] Testes unitários e de integração (JUnit/Mockito)
-- [ ] Documentação da API com Swagger/OpenAPI
+- [✔️] Documentação da API com Swagger/OpenAPI
 - [ ] Segurança básica com Spring Security
 
 ## 👤 Autor
