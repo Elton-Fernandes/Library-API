@@ -14,7 +14,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class EmprestimoServiceTest {
@@ -50,6 +54,18 @@ public class EmprestimoServiceTest {
         EmprestimoRequestDTO dto = new EmprestimoRequestDTO();
         dto.setIdLivro(1L);
         dto.setIdCliente(1L);
+
+        when(emprestimoMapper.toEntity(dto))
+                .thenReturn(emprestimoExistente);
+
+        when(livroRepository.findById(1L))
+                .thenReturn(Optional.of(livro));
+
+        when(clienteRepository.findById(1L))
+                .thenReturn(Optional.of(cliente));
+
+        when(emprestimoRepository.findByLivroIdLivro(livro.getIdLivro()))
+                .thenReturn(List.of(emprestimoExistente));
 
         assertThrows(RuntimeException.class, () -> {
             emprestimoService.save(dto);
